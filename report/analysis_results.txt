@@ -1,0 +1,90 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DATA SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Dataset         | Nodes | Edges |     Type |  SCCs |  Crit.Path
+-------------------------------------------------------------------------------------
+large1.json     |     8 |    10 |      DAG |     8 |      11,50
+large2.json     |     8 |    10 |      DAG |     8 |      11,50
+large3.json     |     8 |    10 |      DAG |     8 |      11,50
+medium1.json    |     8 |    10 |      DAG |     8 |      11,50
+medium2.json    |     8 |    10 |      DAG |     8 |      11,50
+medium3.json    |     8 |    10 |      DAG |     8 |      11,50
+small1.json     |     8 |    10 |      DAG |     8 |      11,50
+small2.json     |     8 |    10 |      DAG |     8 |      11,50
+small3.json     |     8 |    10 |      DAG |     8 |      11,50
+
+Dataset Categories:
+  • Small (6-10 nodes): 9 datasets
+  • Medium (10-20 nodes): 0 datasets
+  • Large (20-50 nodes): 0 datasets
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ALGORITHM PERFORMANCE METRICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. SCC DETECTION (Tarjan's Algorithm)
+
+Dataset         |    Time (µs) |   DFS Visits |  Edges Proc.
+--------------------------------------------------------------------------------
+large1.json     |     2156,700 |            8 |           10
+large2.json     |       80,300 |            8 |           10
+large3.json     |      116,700 |            8 |           10
+medium1.json    |       48,000 |            8 |           10
+medium2.json    |       33,900 |            8 |           10
+medium3.json    |       52,100 |            8 |           10
+small1.json     |       32,000 |            8 |           10
+small2.json     |       44,200 |            8 |           10
+small3.json     |       36,900 |            8 |           10
+
+2. TOPOLOGICAL SORT (Kahn's Algorithm)
+
+Dataset         |    Time (µs) |   Operations |   Valid?
+----------------------------------------------------------------------
+large1.json     |      119,200 |            8 |      Yes
+large2.json     |       46,400 |            8 |      Yes
+large3.json     |       40,400 |            8 |      Yes
+medium1.json    |       34,700 |            8 |      Yes
+medium2.json    |       42,100 |            8 |      Yes
+medium3.json    |       21,500 |            8 |      Yes
+small1.json     |       21,100 |            8 |      Yes
+small2.json     |       27,500 |            8 |      Yes
+small3.json     |       21,000 |            8 |      Yes
+
+3. LONGEST PATH (Critical Path Analysis)
+
+Dataset         |    Time (µs) |  Relaxations |     Max Path
+--------------------------------------------------------------------------------
+large1.json     |       78,900 |           10 |        11,50
+large2.json     |       59,900 |           10 |        11,50
+large3.json     |       61,300 |           10 |        11,50
+medium1.json    |       59,300 |           10 |        11,50
+medium2.json    |       37,800 |           10 |        11,50
+medium3.json    |       32,000 |           10 |        11,50
+small1.json     |       32,600 |           10 |        11,50
+small2.json     |       38,800 |           10 |        11,50
+small3.json     |       33,500 |           10 |        11,50
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BOTTLENECK ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Average SCC time: 0,2890 ms
+Average Topo time: 0,0415 ms
+Average LongestPath time: 0,0482 ms
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EFFECT OF GRAPH STRUCTURE ON PERFORMANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • large1.json: E/V = 1,25, SCC time = 2156,700 µs
+  • large2.json: E/V = 1,25, SCC time = 80,300 µs
+  • large3.json: E/V = 1,25, SCC time = 116,700 µs
+  • medium1.json: E/V = 1,25, SCC time = 48,000 µs
+  • medium2.json: E/V = 1,25, SCC time = 33,900 µs
+  • medium3.json: E/V = 1,25, SCC time = 52,100 µs
+  • small1.json: E/V = 1,25, SCC time = 32,000 µs
+  • small2.json: E/V = 1,25, SCC time = 44,200 µs
+  • small3.json: E/V = 1,25, SCC time = 36,900 µs
+
+
