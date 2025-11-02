@@ -1,23 +1,35 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-DATA SUMMARY
+DATASET SUMMARY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Dataset         | Nodes | Edges |     Type |  SCCs |  Crit.Path
--------------------------------------------------------------------------------------
-large1.json     |     8 |    10 |      DAG |     8 |      11,50
-large2.json     |     8 |    10 |      DAG |     8 |      11,50
-large3.json     |     8 |    10 |      DAG |     8 |      11,50
-medium1.json    |     8 |    10 |      DAG |     8 |      11,50
-medium2.json    |     8 |    10 |      DAG |     8 |      11,50
-medium3.json    |     8 |    10 |      DAG |     8 |      11,50
-small1.json     |     8 |    10 |      DAG |     8 |      11,50
-small2.json     |     8 |    10 |      DAG |     8 |      11,50
-small3.json     |     8 |    10 |      DAG |     8 |      11,50
+Dataset         | Nodes | Edges |    E/V |     Type |  SCCs |  Crit.Path
+------------------------------------------------------------------------------------------
+large1.json     |    35 |    34 |   0,97 |      DAG |    35 |      69,00
+large2.json     |    25 |    39 |   1,56 |      DAG |    25 |       3,00
+large3.json     |    40 |    46 |   1,15 |      DAG |    40 |      79,00
+medium1.json    |    15 |    17 |   1,13 |      DAG |    15 |      27,50
+medium2.json    |    12 |    21 |   1,75 |      DAG |    12 |      25,30
+medium3.json    |    14 |    16 |   1,14 |   Cyclic |     9 |       1,00
+small1.json     |     6 |     6 |   1,00 |   Cyclic |     3 |       1,00
+small2.json     |     8 |     9 |   1,13 |      DAG |     8 |      11,00
+small3.json     |     7 |     7 |   1,00 |   Cyclic |     5 |       1,00
 
-Dataset Categories:
-  • Small (6-10 nodes): 9 datasets
-  • Medium (10-20 nodes): 0 datasets
-  • Large (20-50 nodes): 0 datasets
+DATASET CATEGORIES:
+  • Small (6-10 nodes): 3 datasets
+  • Medium (10-20 nodes): 3 datasets
+  • Large (20-50 nodes): 3 datasets
+
+GRAPH TYPES:
+  • Pure DAGs: 6 (no cycles, direct topological sort)
+  • Cyclic graphs: 3 (require SCC compression)
+
+DENSITY ANALYSIS (E/V ratio):
+  • Average: 1,20
+  • Range: 0,97 - 1,75
+  • Interpretation:
+    - Sparse (E/V < 1.3): Few dependencies, faster processing
+    - Medium (1.3 ≤ E/V < 2.0): Moderate complexity
+    - Dense (E/V ≥ 2.0): Many dependencies, more edge operations
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ALGORITHM PERFORMANCE METRICS
@@ -27,64 +39,84 @@ ALGORITHM PERFORMANCE METRICS
 
 Dataset         |    Time (µs) |   DFS Visits |  Edges Proc.
 --------------------------------------------------------------------------------
-large1.json     |     2156,700 |            8 |           10
-large2.json     |       80,300 |            8 |           10
-large3.json     |      116,700 |            8 |           10
-medium1.json    |       48,000 |            8 |           10
-medium2.json    |       33,900 |            8 |           10
-medium3.json    |       52,100 |            8 |           10
-small1.json     |       32,000 |            8 |           10
-small2.json     |       44,200 |            8 |           10
-small3.json     |       36,900 |            8 |           10
+large1.json     |     1114,000 |           35 |           34
+large2.json     |       71,100 |           25 |           39
+large3.json     |      101,600 |           40 |           46
+medium1.json    |       41,900 |           15 |           17
+medium2.json    |       30,700 |           12 |           21
+medium3.json    |       38,100 |           14 |           16
+small1.json     |       15,600 |            6 |            6
+small2.json     |       20,300 |            8 |            9
+small3.json     |       15,300 |            7 |            7
 
 2. TOPOLOGICAL SORT (Kahn's Algorithm)
 
 Dataset         |    Time (µs) |   Operations |   Valid?
 ----------------------------------------------------------------------
-large1.json     |      119,200 |            8 |      Yes
-large2.json     |       46,400 |            8 |      Yes
-large3.json     |       40,400 |            8 |      Yes
-medium1.json    |       34,700 |            8 |      Yes
-medium2.json    |       42,100 |            8 |      Yes
-medium3.json    |       21,500 |            8 |      Yes
-small1.json     |       21,100 |            8 |      Yes
-small2.json     |       27,500 |            8 |      Yes
-small3.json     |       21,000 |            8 |      Yes
+large1.json     |      252,800 |           35 |      Yes
+large2.json     |       57,700 |           25 |      Yes
+large3.json     |       99,900 |           40 |      Yes
+medium1.json    |       28,500 |           15 |      Yes
+medium2.json    |       24,400 |           12 |      Yes
+medium3.json    |       22,800 |            9 |      Yes
+small1.json     |        7,900 |            3 |      Yes
+small2.json     |       14,000 |            8 |      Yes
+small3.json     |       10,000 |            5 |      Yes
 
 3. LONGEST PATH (Critical Path Analysis)
 
 Dataset         |    Time (µs) |  Relaxations |     Max Path
 --------------------------------------------------------------------------------
-large1.json     |       78,900 |           10 |        11,50
-large2.json     |       59,900 |           10 |        11,50
-large3.json     |       61,300 |           10 |        11,50
-medium1.json    |       59,300 |           10 |        11,50
-medium2.json    |       37,800 |           10 |        11,50
-medium3.json    |       32,000 |           10 |        11,50
-small1.json     |       32,600 |           10 |        11,50
-small2.json     |       38,800 |           10 |        11,50
-small3.json     |       33,500 |           10 |        11,50
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-BOTTLENECK ANALYSIS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Average SCC time: 0,2890 ms
-Average Topo time: 0,0415 ms
-Average LongestPath time: 0,0482 ms
+large1.json     |      168,300 |           34 |        69,00
+large2.json     |       58,500 |            1 |         3,00
+large3.json     |      118,200 |           46 |        79,00
+medium1.json    |       36,700 |           17 |        27,50
+medium2.json    |       35,200 |           21 |        25,30
+medium3.json    |       23,000 |            0 |         1,00
+small1.json     |        8,600 |            0 |         1,00
+small2.json     |       25,200 |            9 |        11,00
+small3.json     |       10,700 |            0 |         1,00
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EFFECT OF GRAPH STRUCTURE ON PERFORMANCE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  • large1.json: E/V = 1,25, SCC time = 2156,700 µs
-  • large2.json: E/V = 1,25, SCC time = 80,300 µs
-  • large3.json: E/V = 1,25, SCC time = 116,700 µs
-  • medium1.json: E/V = 1,25, SCC time = 48,000 µs
-  • medium2.json: E/V = 1,25, SCC time = 33,900 µs
-  • medium3.json: E/V = 1,25, SCC time = 52,100 µs
-  • small1.json: E/V = 1,25, SCC time = 32,000 µs
-  • small2.json: E/V = 1,25, SCC time = 44,200 µs
-  • small3.json: E/V = 1,25, SCC time = 36,900 µs
+DENSITY IMPACT (E/V ratio vs SCC time):
+  • large1.json     E/V=0,97 (Sparse) → SCC: 1114,00 µs, Topo: 252,80 µs
+  • large2.json     E/V=1,56 (Medium) → SCC:  71,10 µs, Topo:  57,70 µs
+  • large3.json     E/V=1,15 (Sparse) → SCC: 101,60 µs, Topo:  99,90 µs
+  • medium1.json    E/V=1,13 (Sparse) → SCC:  41,90 µs, Topo:  28,50 µs
+  • medium2.json    E/V=1,75 (Medium) → SCC:  30,70 µs, Topo:  24,40 µs
+  • medium3.json    E/V=1,14 (Sparse) → SCC:  38,10 µs, Topo:  22,80 µs
+  • small1.json     E/V=1,00 (Sparse) → SCC:  15,60 µs, Topo:   7,90 µs
+  • small2.json     E/V=1,13 (Sparse) → SCC:  20,30 µs, Topo:  14,00 µs
+  • small3.json     E/V=1,00 (Sparse) → SCC:  15,30 µs, Topo:  10,00 µs
 
+CYCLE IMPACT:
+  • Cyclic graphs: 3/9 datasets
+  • Avg SCC time (Cyclic): 0,0230 ms
+  • Avg SCC time (DAG):    0,2299 ms
+  • Cyclic overhead: -90,0%
 
+SCC SIZE DISTRIBUTION:
+  • medium3.json    9 SCCs for 14 nodes (compression ratio: 1,56)
+  • small1.json     3 SCCs for 6 nodes (compression ratio: 2,00)
+  • small3.json     5 SCCs for 7 nodes (compression ratio: 1,40)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMPLEXITY VERIFICATION: O(V + E)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Expected: All algorithms should scale linearly with (V + E)
+
+Dataset         |      V |      E |      V+E |     SCC (µs) |   µs/(V+E)
+-------------------------------------------------------------------------------------
+large1.json     |     35 |     34 |       69 |      1114,00 |      16,14
+large2.json     |     25 |     39 |       64 |        71,10 |       1,11
+large3.json     |     40 |     46 |       86 |       101,60 |       1,18
+medium1.json    |     15 |     17 |       32 |        41,90 |       1,31
+medium2.json    |     12 |     21 |       33 |        30,70 |       0,93
+medium3.json    |     14 |     16 |       30 |        38,10 |       1,27
+small1.json     |      6 |      6 |       12 |        15,60 |       1,30
+small2.json     |      8 |      9 |       17 |        20,30 |       1,19
+small3.json     |      7 |      7 |       14 |        15,30 |       1,09
