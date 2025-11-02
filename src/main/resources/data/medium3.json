@@ -10,5 +10,6 @@
     {"u": 12, "v": 13, "w": 1.0}
   ],
   "source": 0,
-  "weight_model": "edge"
+  "weight_model": "edge",
+  "description": "Medium with SCCs: SCC1(0,1,2) + SCC2(3,4,5) + SCC3(8,9) + DAG. Tests compression."
 }

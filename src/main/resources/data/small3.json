@@ -11,5 +11,6 @@
     {"u": 5, "v": 6, "w": 1.0}
   ],
   "source": 0,
-  "weight_model": "edge"
+  "weight_model": "edge",
+  "description": "Small mixed: SCC(0,1,2) + DAG(2-3-4-5-6). 2 components."
 }

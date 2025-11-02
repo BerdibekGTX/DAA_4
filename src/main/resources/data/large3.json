@@ -50,5 +50,6 @@
     {"u": 25, "v": 35, "w": 1.5}
   ],
   "source": 0,
-  "weight_model": "edge"
+  "weight_model": "edge",
+  "description": "Large complex: 40 nodes, 46 edges. Linear chain with bottleneck cross-links."
 }

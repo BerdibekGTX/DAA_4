@@ -13,5 +13,6 @@
     {"u": 11, "v": 14, "w": 1.4}
   ],
   "source": 0,
-  "weight_model": "edge"
+  "weight_model": "edge",
+  "description": "Medium sparse DAG: 15 nodes, 17 edges (E/V ≈ 1.13). Tests sparse performance."
 }

@@ -11,5 +11,6 @@
     {"u": 8, "v": 11, "w": 1.0}, {"u": 9, "v": 10, "w": 1.2}, {"u": 10, "v": 11, "w": 1.3}
   ],
   "source": 0,
-  "weight_model": "edge"
+  "weight_model": "edge",
+  "description": "Medium dense DAG: 12 nodes, 21 edges (E/V ≈ 1.75). Tests dense connectivity."
 }
